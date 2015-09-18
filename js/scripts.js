@@ -1,30 +1,37 @@
-var ItemPrice = new Object();
-  ItemPrice['small'] = 7;
-  ItemPrice['medium'] = 9;
-  ItemPrice['large'] = 12;
-  ItemPrice['pepperoni'] = 1;
-  ItemPrice['mushroom'] = .5;
-  ItemPrice['onion'] = .5;
-  ItemPrice['ham'] = 1;
-  ItemPrice['bacon'] = 1;
-  ItemPrice['pineapple']=.75;
-  ItemPrice['anchovies']=.5;
-  ItemPrice['olives']=.25;
-  ItemPrice['extra cheese']=.5;
-  ItemPrice['fresh basil']=.75;
-  ItemPrice['soda-medium']=3;
-  ItemPrice['soda-large']=4;
-  ItemPrice['soda-small']=2;
+var PriceList = new Object();
+  PriceList['small'] = 7;
+  PriceList['medium'] = 9;
+  PriceList['large'] = 12;
+  PriceList['pepperoni'] = 1;
+  PriceList['mushroom'] = .5;
+  PriceList['onion'] = .5;
+  PriceList['ham'] = 1;
+  PriceList['bacon'] = 1;
+  PriceList['pineapple']=.75;
+  PriceList['anchovies']=.5;
+  PriceList['olives']=.25;
+  PriceList['extra cheese']=.5;
+  PriceList['fresh basil']=.75;
+
+
 
 var Topping = function(name) {
   this.name = name;
-  this.price = ItemPrice[name];
+  this.price = PriceList[name];
 };
 
-var Item = function(size) {
-  this.size = size;
-  this.basePrice = ItemPrice[size];
+
+var Item = function(name) {
+  this.name = name;
+  this.basePrice = PriceList[name];
   this.toppings = [];
+  var cat = ['small', 'medium','large'];
+  if (cat.indexOf(this.name) > -1) {
+    this.category = "pizza";
+  } else {
+    this.category = "topping";
+  }
+
   this.cost = function() {
     var cost = this.basePrice;
     this.toppings.forEach(function(topping) {
@@ -32,6 +39,7 @@ var Item = function(size) {
     });
     return cost;
   };
+
   this.addTopping = function(topping) {
     for (var i = 0; i < this.toppings.length; i++) {
       if (this.toppings[i].name === topping.name) {
@@ -40,9 +48,27 @@ var Item = function(size) {
     }
     this.toppings.push(topping);
     return true;
-    }
   };
 
+};
+
+
+
+var Items = function () {
+  this.items = [];
+  for (var key in PriceList) {
+     var item = new Item(key);
+     this.items.push(item);
+  }
+  this.find = function(itemName) {
+    for (var i=0;i<this.items.length;i++) {
+      if (this.items[i].name == itemName) {
+        return this.items[i];
+      }
+    }
+    return false;
+  };
+};
 
 var Order = function() {
   this.items = [];
@@ -58,4 +84,10 @@ var Order = function() {
       this.items.push(item);
     }
   };
-}
+};
+
+$(document).ready(function() {
+  function showToppings() {
+
+  };
+});
