@@ -3,14 +3,14 @@ var PriceList = new Object();
   PriceList['medium'] = 9;
   PriceList['large'] = 12;
   PriceList['pepperoni'] = 1;
-  PriceList['mushroom'] = .5;
-  PriceList['onion'] = .5;
+  PriceList['mushroom'] = .50;
+  PriceList['onion'] = .50;
   PriceList['ham'] = 1;
   PriceList['bacon'] = 1;
   PriceList['pineapple']=.75;
-  PriceList['anchovies']=.5;
+  PriceList['anchovies']=.50;
   PriceList['olives']=.25;
-  PriceList['extra cheese']=.5;
+  PriceList['extra cheese']=.50;
   PriceList['fresh basil']=.75;
 
 
@@ -77,8 +77,8 @@ var Order = function() {
     this.items.forEach(function(item) {
       cost += item.cost();
     });
-    return cost;
-  }
+    return "$" + cost.toFixed(2);
+  };
   this.addItem = function(item, quantity) {
     for (var i=1; i <= quantity; i++) {
       this.items.push(item);
@@ -88,6 +88,7 @@ var Order = function() {
 
 $(document).ready(function() {
   var items = new Items();
+  var order = new Order();
   function showToppings() {
       items.items.forEach(function(item) {
         if (item.category == 'topping') {
@@ -120,11 +121,23 @@ $(document).ready(function() {
      pie.addTopping(new Topping(selectedToppings[t]));
      tops += '<li class="list-group-item">' + pie.toppings[t].name + '</li>';
    }
+    var qty = $("#quantity").val();
+    order.addItem(pie, qty);
 
     $("#order").append(
       '<ul class="list-group">' + pie.name.toUpperCase() + tops + '<ul>'
     );
+
+    $('#total').append(
+      order.total()
+    );
+
+    $("#order").show();
+    clearForm();
   });
 
-
+  function clearForm() {
+    $("#order-form input[type='radio']:checked").val("");
+    $("#order-form input:checkbox:checked").val("");
+  };
 });

@@ -2,7 +2,7 @@
 describe('topping', function() {
   it("returns the cost of a topping", function() {
     var top = new Topping('pepperoni');
-    expect(top.price).to.equal(1);
+    expect(top.price).to.equal(1.00);
   });
 });
 
@@ -34,7 +34,7 @@ describe('item', function() {
     pizza.addTopping(top);
     var top = new Topping('onion');
     pizza.addTopping(top);
-    expect(pizza.cost()).to.equal(8.5);
+    expect(pizza.cost()).to.equal(8.50);
   });
 
 });
@@ -68,7 +68,7 @@ describe("order", function() {
     var top = new Topping('onion');  //.5
     pizza.addTopping(top);
     order.addItem(pizza, 2);
-    expect(order.total()).to.equal(17);
+    expect(order.total()).to.equal('$17.00');
   });
 
 

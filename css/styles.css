@@ -75,6 +75,7 @@ button {
   background-color: white;
 }
 #order  {
+  display:none;
   background-color: white;
 }
 
