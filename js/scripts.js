@@ -12,13 +12,16 @@ var ItemPrice = new Object();
   ItemPrice['olives']=.25;
   ItemPrice['extra cheese']=.5;
   ItemPrice['fresh basil']=.75;
+  ItemPrice['soda-medium']=3;
+  ItemPrice['soda-large']=4;
+  ItemPrice['soda-small']=2;
 
 var Topping = function(name) {
   this.name = name;
   this.price = ItemPrice[name];
 };
 
-var Pizza = function(size) {
+var Item = function(size) {
   this.size = size;
   this.basePrice = ItemPrice[size];
   this.toppings = [];
@@ -39,3 +42,20 @@ var Pizza = function(size) {
     return true;
     }
   };
+
+
+var Order = function() {
+  this.items = [];
+  this.total = function() {
+    var cost = 0;
+    this.items.forEach(function(item) {
+      cost += item.cost();
+    });
+    return cost;
+  }
+  this.addItem = function(item, quantity) {
+    for (var i=1; i <= quantity; i++) {
+      this.items.push(item);
+    }
+  };
+}
