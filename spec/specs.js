@@ -46,30 +46,30 @@ describe('items', function() {
     expect(itms.find('pepperoni').category).to.equal('topping');
   });
 });
-//
-//
-// describe("order", function() {
-//   it("adds items to an order", function() {
-//     var order = new Order();
-//     var pizza = new Item('small');
-//     var top = new Topping('pepperoni');
-//     pizza.addTopping(top);
-//     var top = new Topping('onion');
-//     pizza.addTopping(top);
-//     order.addItem(pizza, 2);
-//     expect(order.items.length).to.equal(2);
-//   });
-//
-//   it("returns total cost of an order", function() {
-//     var order = new Order();
-//     var pizza = new Item('small'); //7
-//     var top = new Topping('pepperoni'); //1
-//     pizza.addTopping(top);
-//     var top = new Topping('onion');  //.5
-//     pizza.addTopping(top);
-//     order.addItem(pizza, 2);
-//     expect(order.total()).to.equal(17);
-//   });
-//
-//
-// });
+
+
+describe("order", function() {
+  it("adds items to an order", function() {
+    var order = new Order();
+    var pizza = new Item('small');
+    var top = new Topping('pepperoni');
+    pizza.addTopping(top);
+    var top = new Topping('onion');
+    pizza.addTopping(top);
+    order.addItem(pizza, 2);
+    expect(order.items.length).to.equal(2);
+  });
+
+  it("returns total cost of an order", function() {
+    var order = new Order();
+    var pizza = new Item('small'); //7
+    var top = new Topping('pepperoni'); //1
+    pizza.addTopping(top);
+    var top = new Topping('onion');  //.5
+    pizza.addTopping(top);
+    order.addItem(pizza, 2);
+    expect(order.total()).to.equal(17);
+  });
+
+
+});

@@ -6,7 +6,7 @@
 }
 
 html, body {
-  background-color:lightgray;
+  background-color:white;
   font-size: 1em;
   max-width: 90%;
   margin: 0 auto;
@@ -38,7 +38,7 @@ html, body {
   #container {
     max-width:  1200px; /*using max-width allows resizing on shrink instead of scrollbar*/
     margin: 0 auto;
-    background-color: lightgray;
+    background-color: white;
   }
 
 button {
@@ -56,26 +56,30 @@ button {
   width: 100px;
   margin: 10px;
 }
-
 #header h1 {
   margin-left: 125px;
 }
 
 #header {
-  width: 100%;
+  width: 90%;
   margin: 10px auto;
   padding:10px;
   background-color: white;
 }
 
-
-#sidebar h3 {
-  width: 50%;
-  margin: auto;
+#quantity {
+  width: 40px;
+  text-align: center;
+}
+#order-form {
+  background-color: white;
+}
+#order  {
+  background-color: white;
 }
 
 #footer {
   clear: both;
   padding: 10px;
-  background-color: lightGray;
+  background-color: white;
 }

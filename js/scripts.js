@@ -87,7 +87,44 @@ var Order = function() {
 };
 
 $(document).ready(function() {
+  var items = new Items();
   function showToppings() {
-
+      items.items.forEach(function(item) {
+        if (item.category == 'topping') {
+          $("#toppings").append('<input type="checkbox" name="topping" value="' + item.name + '">' + item.name + '<br>');
+        }
+      });
   };
+  showToppings();
+
+  $("#order-form").submit(function(e) {
+    e.preventDefault();
+    //gather items ordering
+    var size = $("#order-form input[type='radio']:checked").val();
+
+    if (size != null) {
+      var pie = new Item(size);
+    }
+
+
+
+
+    var selectedToppings = $("#order-form input:checkbox:checked").map(function(){
+        return $(this).val();
+    });
+
+
+
+    tops = "";
+    for (var t=0; t < selectedToppings.length; t++) {
+     pie.addTopping(new Topping(selectedToppings[t]));
+     tops += '<li class="list-group-item">' + pie.toppings[t].name + '</li>';
+   }
+
+    $("#order").append(
+      '<ul class="list-group">' + pie.name.toUpperCase() + tops + '<ul>'
+    );
+  });
+
+
 });

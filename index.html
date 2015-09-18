@@ -9,16 +9,18 @@
   </head>
   <body>
     <div class="container">
+
       <div class="row">
         <div class="col-12" id="header">
           <img src="public/dominos.png" width="100">
           <h1>Dominos Order Form</h1>
         </div>
       </div>
+
       <div class="row">
         <h2>Build Your Pizza!</h2>
         <div class="col-8">
-          <form class="form" id="order">
+          <form class="form" id="order-form">
             <div class="form-group">
 
               <label for="size">Step 1:  Pick your size</label><br>
@@ -26,18 +28,19 @@
               <input type="radio" name="size" value="medium">Medium<br>
               <input type="radio" name="size" value="large">Large<br>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="toppings">
               <label for="toppings">Step 2:  Pick your toppings</label><br>
-              <input type="checkbox" name="toppings" value="pepperoni">pepperoni<br>
-              <input type="checkbox" name="toppings" value="extra cheese">extra cheese<br>
-              <input type="checkbox" name="toppings" value="onions">onions<br>
             </div>
-
-            <button type="submit" class="btn">Add To Order!</button>
+            <div class="form-group">
+              <label for="quantity">Special! Double your order for 25% off!</label><br>
+              <label for="quantity">Quantity:</label>
+              <input id="quantity" type="text" name="quantity" value="1">
+            </div>
+            <button id="add-order" type="submit" class="btn">Add To Order</button>
           </form>
       </div>
-      </div>
-      <div id="result">
+
+      <div class="col-4" id="order">
 
       </div>
     </div>
