@@ -56,8 +56,8 @@ describe("order", function() {
     pizza.addTopping(top);
     var top = new Topping('onion');
     pizza.addTopping(top);
-    order.addItem(pizza, 2);
-    expect(order.items.length).to.equal(2);
+    order.addItem(pizza);
+    expect(order.items.length).to.equal(1);
   });
 
   it("returns total cost of an order", function() {
@@ -67,8 +67,8 @@ describe("order", function() {
     pizza.addTopping(top);
     var top = new Topping('onion');  //.5
     pizza.addTopping(top);
-    order.addItem(pizza, 2);
-    expect(order.total()).to.equal('$17.00');
+    order.addItem(pizza);
+    expect(order.total()).to.equal('$8.50');
   });
 
 

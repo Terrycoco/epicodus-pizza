@@ -79,10 +79,8 @@ var Order = function() {
     });
     return "$" + cost.toFixed(2);
   };
-  this.addItem = function(item, quantity) {
-    for (var i=1; i <= quantity; i++) {
+  this.addItem = function(item) {
       this.items.push(item);
-    }
   };
 };
 
@@ -102,33 +100,43 @@ $(document).ready(function() {
     e.preventDefault();
     //gather items ordering
     var size = $("#order-form input[type='radio']:checked").val();
-
-    if (size != null) {
-      var pie = new Item(size);
-    }
-
-
-
-
-    var selectedToppings = $("#order-form input:checkbox:checked").map(function(){
-        return $(this).val();
-    });
-
-
-
-    tops = "";
-    for (var t=0; t < selectedToppings.length; t++) {
-     pie.addTopping(new Topping(selectedToppings[t]));
-     tops += '<li class="list-group-item">' + pie.toppings[t].name + '</li>';
-   }
     var qty = $("#quantity").val();
-    order.addItem(pie, qty);
 
+
+
+    if (size == null) {
+      var msg = "You must enter a pie size";
+      $(".error").text(msg);
+      return;
+    } else {
+      $(".error").text("");
+      for (var i=0;i<qty;i++) {
+          var pie = new Item(size);
+          var selectedToppings = $("#order-form input:checkbox:checked").map(function(){
+              return $(this).val();
+          });
+
+          var tops = "";
+          for (var t=0; t < selectedToppings.length; t++) {
+           pie.addTopping(new Topping(selectedToppings[t]));
+           tops += '<li>' + selectedToppings[t] + '</li>';
+          }
+
+          if (tops.length == 0) {
+              tops = " - PLAIN";
+          } else {
+              tops = " WITH " + tops;
+          }
+          order.addItem(pie);
+     }
+
+
+   }
     $("#order").append(
-      '<ul class="list-group">' + pie.name.toUpperCase() + tops + '<ul>'
+      '<ul class="list-unstyled">' + qty + "  "  + pie.name.toUpperCase() + tops + '<ul>'
     );
 
-    $('#total').append(
+    $('#total').text(
       order.total()
     );
 
@@ -137,7 +145,8 @@ $(document).ready(function() {
   });
 
   function clearForm() {
-    $("#order-form input[type='radio']:checked").val("");
-    $("#order-form input:checkbox:checked").val("");
+    $('input:radio').removeAttr('checked');
+    $('input:checkbox').removeAttr('checked');
+    $('#quantity').val("1");
   };
 });
