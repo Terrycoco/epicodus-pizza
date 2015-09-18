@@ -11,4 +11,13 @@ describe('pizza', function() {
     var pizza = new Pizza('small');
     expect(pizza.size).to.equal('small');
   });
+
+  it("adds toppings to a pie", function() {
+    var pizza = new Pizza('small');
+    expect(pizza.size).to.equal('small');
+    var top = new Topping('pepperoni');
+    pizza.addTopping(top);
+    expect(pizza.toppings.length).to.equal(1);
+  });
+
 });

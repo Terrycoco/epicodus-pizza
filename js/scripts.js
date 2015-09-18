@@ -29,4 +29,7 @@ var Pizza = function(size) {
     });
     return cost;
   };
+  this.addTopping = function(topping) {
+    this.toppings.push(topping);
+  };
 };
