@@ -30,6 +30,12 @@ var Pizza = function(size) {
     return cost;
   };
   this.addTopping = function(topping) {
+    for (var i = 0; i < this.toppings.length; i++) {
+      if (this.toppings[i].name === topping.name) {
+        return false;
+      }
+    }
     this.toppings.push(topping);
+    return true;
+    }
   };
-};

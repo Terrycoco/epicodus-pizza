@@ -20,4 +20,14 @@ describe('pizza', function() {
     expect(pizza.toppings.length).to.equal(1);
   });
 
+  it("adds toppings to a pie unless already there", function() {
+    var pizza = new Pizza('small');
+    expect(pizza.size).to.equal('small');
+    var top = new Topping('pepperoni');
+    pizza.addTopping(top);
+    var top = new Topping('pepperoni');
+    pizza.addTopping(top);
+    expect(pizza.toppings.length).to.equal(1);
+  });
+
 });
