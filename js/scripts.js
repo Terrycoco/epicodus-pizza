@@ -125,7 +125,7 @@ $(document).ready(function() {
           if (tops.length == 0) {
               tops = " - PLAIN";
           } else {
-              tops = " WITH " + tops;
+              tops = " WITH: " + tops;
           }
           order.addItem(pie);
      }
